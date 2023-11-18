@@ -1,14 +1,13 @@
 import Foundation
 
 #if !COCOAPODS
-import Umbrella
+    import Umbrella
 #endif
 
 open class AppsFlyerProvider: RuntimeProviderType {
-  public let className: String = "AppsFlyerLib"
-  public let instanceSelectorName: String? = "shared"
-  public let selectorName: String = "logEvent:withValues:"
+    public let className: String = "AppsFlyerLib"
+    public let instanceSelectorName: String? = "shared"
+    public let selectorName: String = "logEvent:withValues:"
 
-  public init() {
-  }
+    public init() {}
 }

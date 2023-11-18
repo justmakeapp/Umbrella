@@ -1,13 +1,12 @@
 import Foundation
 
 #if !COCOAPODS
-import Umbrella
+    import Umbrella
 #endif
 
 open class FacebookProvider: RuntimeProviderType {
-  public let className: String = "FBSDKAppEvents"
-  public let selectorName: String = "logEvent:parameters:"
+    public let className: String = "FBSDKAppEvents"
+    public let selectorName: String = "logEvent:parameters:"
 
-  public init() {
-  }
+    public init() {}
 }

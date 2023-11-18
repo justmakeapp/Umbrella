@@ -1,13 +1,12 @@
 import Foundation
 
 #if !COCOAPODS
-import Umbrella
+    import Umbrella
 #endif
 
 open class FirebaseProvider: RuntimeProviderType {
-  public let className: String = "FIRAnalytics"
-  public let selectorName: String = "logEventWithName:parameters:"
+    public let className: String = "FIRAnalytics"
+    public let selectorName: String = "logEventWithName:parameters:"
 
-  public init() {
-  }
+    public init() {}
 }

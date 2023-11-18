@@ -1,13 +1,12 @@
 import Foundation
 
 #if !COCOAPODS
-import Umbrella
+    import Umbrella
 #endif
 
 open class AnswersProvider: RuntimeProviderType {
-  public let className: String = "Answers"
-  public let selectorName: String = "logCustomEventWithName:customAttributes:"
+    public let className: String = "Answers"
+    public let selectorName: String = "logCustomEventWithName:customAttributes:"
 
-  public init() {
-  }
+    public init() {}
 }

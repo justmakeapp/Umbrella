@@ -1,14 +1,13 @@
 import Foundation
 
 #if !COCOAPODS
-import Umbrella
+    import Umbrella
 #endif
 
 open class MixpanelProvider: RuntimeProviderType {
-  public let className: String = "Mixpanel"
-  public let instanceSelectorName: String? = "sharedInstance"
-  public let selectorName: String = "track:properties:"
+    public let className: String = "Mixpanel"
+    public let instanceSelectorName: String? = "sharedInstance"
+    public let selectorName: String = "track:properties:"
 
-  public init() {
-  }
+    public init() {}
 }

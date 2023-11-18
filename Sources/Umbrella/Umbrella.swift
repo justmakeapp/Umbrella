@@ -1,3 +1,5 @@
+import StoreKit
+
 public protocol AnalyticsType {
     associatedtype Event: EventType
     func register(provider: ProviderType)
@@ -6,6 +8,15 @@ public protocol AnalyticsType {
 
 public protocol ProviderType {
     func log(_ eventName: String, parameters: [String: Any]?)
+
+    /// Logs in-app purchase events in Google Analytics for Firebase after a `Product` purchase
+    /// is successful.
+    ///
+    /// Call this method after Product.purchase() succeeds and before calling Transaction.finish().
+    ///
+    /// - Parameter transaction: The Transaction returned from StoreKit 2.
+    @available(iOS 15.0, *)
+    func logTransaction(_ transaction: Transaction)
 }
 
 public protocol EventType {

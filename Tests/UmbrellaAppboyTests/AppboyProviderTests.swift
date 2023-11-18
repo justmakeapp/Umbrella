@@ -34,7 +34,8 @@ final class AppboyProviderTests: XCTestCase {
 
 @available(iOS 10.0, *)
 extension UNUserNotificationCenter {
-    private static let currentUserNotificationCenter = UNUserNotificationCenter.perform(NSSelectorFromString("alloc"))?.takeUnretainedValue() as! UNUserNotificationCenter
+    private static let currentUserNotificationCenter = UNUserNotificationCenter.perform(NSSelectorFromString("alloc"))?
+        .takeUnretainedValue() as! UNUserNotificationCenter
 
     @objc static func swizzled_currentNotificationCenter() -> UNUserNotificationCenter {
         return currentUserNotificationCenter

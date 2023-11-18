@@ -6,7 +6,12 @@ import XCTest
 final class MixpanelProviderTests: XCTestCase {
     override func setUp() {
         super.setUp()
-        Mixpanel.sharedInstance(withToken: "TEST_TOKEN", launchOptions: [:], trackCrashes: true, automaticPushTracking: false)
+        Mixpanel.sharedInstance(
+            withToken: "TEST_TOKEN",
+            launchOptions: [:],
+            trackCrashes: true,
+            automaticPushTracking: false
+        )
     }
 
     func testMixpanelProvider() {

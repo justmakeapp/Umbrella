@@ -15,7 +15,7 @@ public protocol ProviderType {
     /// Call this method after Product.purchase() succeeds and before calling Transaction.finish().
     ///
     /// - Parameter transaction: The Transaction returned from StoreKit 2.
-    @available(iOS 15.0, *)
+    @available(iOS 15.0, macOS 12.0, *)
     func logTransaction(_ transaction: Transaction)
 }
 
@@ -40,6 +40,13 @@ open class Analytics<Event: EventType>: AnalyticsType {
             guard let eventName = event.name(for: provider) else { continue }
             let parameters = event.parameters(for: provider)
             provider.log(eventName, parameters: parameters)
+        }
+    }
+
+    @available(iOS 15.0, macOS 12.0, *)
+    open func logTransaction(_ transaction: Transaction) {
+        for provider in providers {
+            provider.logTransaction(transaction)
         }
     }
 }

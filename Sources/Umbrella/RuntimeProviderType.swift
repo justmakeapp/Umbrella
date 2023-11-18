@@ -16,7 +16,7 @@ public extension RuntimeProviderType {
     }
 
     var instance: AnyObject? {
-        guard let cls = cls else { return nil }
+        guard let cls else { return nil }
         guard let sel = instanceSelectorName.flatMap(NSSelectorFromString) else { return nil }
         guard cls.responds(to: sel) else { return nil }
         return cls.perform(sel)?.takeUnretainedValue()
@@ -27,8 +27,8 @@ public extension RuntimeProviderType {
     }
 
     var responds: Bool {
-        guard let cls = cls else { return false }
-        if let instance = instance {
+        guard let cls else { return false }
+        if let instance {
             return instance.responds(to: selector)
         } else {
             return cls.responds(to: selector)
@@ -37,7 +37,7 @@ public extension RuntimeProviderType {
 
     func log(_ eventName: String, parameters: [String: Any]?) {
         guard responds else { return }
-        if let instance = instance {
+        if let instance {
             _ = instance.perform(selector, with: eventName, with: parameters)
         } else {
             _ = cls?.perform(selector, with: eventName, with: parameters)

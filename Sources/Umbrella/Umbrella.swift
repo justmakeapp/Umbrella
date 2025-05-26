@@ -9,14 +9,16 @@ public protocol AnalyticsType {
 public protocol ProviderType {
     func log(_ eventName: String, parameters: [String: Any]?)
 
-    /// Logs in-app purchase events in Google Analytics for Firebase after a `Product` purchase
-    /// is successful.
-    ///
-    /// Call this method after Product.purchase() succeeds and before calling Transaction.finish().
-    ///
-    /// - Parameter transaction: The Transaction returned from StoreKit 2.
-    @available(iOS 15.0, macOS 12.0, *)
-    func logTransaction(_ transaction: Transaction)
+    #if os(iOS) || os(macOS)
+        /// Logs in-app purchase events in Google Analytics for Firebase after a `Product` purchase
+        /// is successful.
+        ///
+        /// Call this method after Product.purchase() succeeds and before calling Transaction.finish().
+        ///
+        /// - Parameter transaction: The Transaction returned from StoreKit 2.
+        @available(iOS 15.0, macOS 12.0, *)
+        func logTransaction(_ transaction: Transaction)
+    #endif
 }
 
 public protocol EventType {
@@ -43,10 +45,12 @@ open class Analytics<Event: EventType>: AnalyticsType {
         }
     }
 
-    @available(iOS 15.0, macOS 12.0, *)
-    open func logTransaction(_ transaction: Transaction) {
-        for provider in providers {
-            provider.logTransaction(transaction)
+    #if os(iOS) || os(macOS)
+        @available(iOS 15.0, macOS 12.0, *)
+        open func logTransaction(_ transaction: Transaction) {
+            for provider in providers {
+                provider.logTransaction(transaction)
+            }
         }
-    }
+    #endif
 }
